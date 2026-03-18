@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\tambahsiswa;
 use App\Models\tambahkelas;
- use Barryvdh\DomPDF\Facade\Pdf;
 
 class Siswacontroller extends Controller
 {
@@ -89,20 +88,7 @@ class Siswacontroller extends Controller
     $siswa->save();
 
     return redirect('/admin/siswa')->with('success', 'Data berhasil diupdate');
-  }
-
-    public function exportPdf()
-    {
-        $siswa = DB::table('siswa')->get();
-
-        $pdf = Pdf::loadView('admin.siswa.siswa_pdf', [
-            'siswa' => $siswa
-        ]);
-
-        return $pdf->download('data-siswa.pdf');
-    }
-
-    
+  } 
 
 }
 

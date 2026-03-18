@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\tambahmapel;
-use Barryvdh\DomPDF\Facade\Pdf;
+
 class Mapelcontroller extends Controller
 {
     public function mapel()
@@ -67,15 +67,5 @@ class Mapelcontroller extends Controller
     return redirect('/admin/mapel')->with('success', 'Data berhasil diupdate');
   }
   
-  public function exportPdf()
-    {
-        $mapel = DB::table('mapel')->get();
-
-        $pdf = Pdf::loadView('admin.mapel.mapel_pdf', [
-            'mapel' => $mapel
-        ]);
-
-        return $pdf->download('data-mapel.pdf');
-    }
     
 }

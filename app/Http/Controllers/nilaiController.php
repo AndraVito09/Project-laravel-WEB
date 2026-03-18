@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\tambahnilai;
 use App\Models\tambahsiswa;
-use Barryvdh\DomPDF\Facade\Pdf;
+
 class Nilaicontroller extends Controller
 {
     public function nilai()
@@ -103,14 +103,4 @@ class Nilaicontroller extends Controller
     return redirect('/admin/nilai')->with('success', 'Data berhasil diupdate');
   }
 
-  public function exportPdf()
-    {
-        $nilai = DB::table('nilai')->get();
-
-        $pdf = Pdf::loadView('admin.nilai.nilai_pdf', [
-            'nilai' => $nilai
-        ]);
-
-        return $pdf->download('data-nilai.pdf');
-    }
 }

@@ -8,7 +8,7 @@ use App\Models\tambahmapeldiampu;
 use App\Models\tambahkelas;
 use App\Models\tambahguru;
 use App\Models\tambahmapel;
-use Barryvdh\DomPDF\Facade\Pdf;
+
 class Mapeldiampucontroller extends Controller
 {
     public function mapeldiampu()
@@ -89,14 +89,4 @@ class Mapeldiampucontroller extends Controller
     return redirect('/admin/mapeldiampu')->with('success', 'Data berhasil diupdate');
   }
 
-  public function exportPdf()
-    {
-        $mapeldiampu = DB::table('mapel_diampu')->get();
-
-        $pdf = Pdf::loadView('admin.mapeldiampu.mapeldiampu_pdf', [
-            'mapeldiampu' => $mapeldiampu
-        ]);
-
-        return $pdf->download('data-mapeldiampu.pdf');
-    }
 }

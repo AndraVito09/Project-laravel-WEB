@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\tambahguru;
- use Barryvdh\DomPDF\Facade\Pdf;
  
 class Gurucontroller extends Controller
 {
@@ -77,14 +76,4 @@ class Gurucontroller extends Controller
     return redirect('/admin/guru')->with('success', 'Data berhasil diupdate');
   }
 
-  public function exportPdf()
-    {
-        $guru = DB::table('guru')->get();
-
-        $pdf = Pdf::loadView('admin.guru.guru_pdf', [
-            'guru' => $guru
-        ]);
-
-        return $pdf->download('data-guru.pdf');
-    }
 }

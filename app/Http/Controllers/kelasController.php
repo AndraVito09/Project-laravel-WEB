@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\tambahkelas;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class Kelascontroller extends Controller
 {
@@ -68,15 +67,4 @@ class Kelascontroller extends Controller
 
     return redirect('/admin/kelas')->with('success', 'Data berhasil diupdate');
   }
-
-  public function exportPdf()
-    {
-        $kelas = DB::table('kelas')->get();
-
-        $pdf = Pdf::loadView('admin.kelas.kelas_pdf', [
-            'kelas' => $kelas
-        ]);
-
-        return $pdf->download('data-kelas.pdf');
-    }
 }

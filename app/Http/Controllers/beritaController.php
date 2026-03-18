@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\tambahberita;
 use App\Models\tambahguru;
-use Barryvdh\DomPDF\Facade\Pdf;
+
 class Beritacontroller extends Controller
 {
     public function berita()
@@ -78,14 +78,4 @@ class Beritacontroller extends Controller
     return redirect('/admin/berita')->with('success', 'Data berhasil diupdate');
   }
 
-  public function exportPdf()
-    {
-        $berita = DB::table('berita')->get();
-
-        $pdf = Pdf::loadView('admin.berita.berita_pdf', [
-            'berita' => $berita
-        ]);
-
-        return $pdf->download('data-berita.pdf');
-    }
 }
