@@ -12,22 +12,19 @@ use App\Http\Controllers\Mapelcontroller;
 use App\Http\Controllers\Mapeldiampucontroller;
 use App\Http\Controllers\Nilaicontroller;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/register', [RegisterController::class, 'show'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
-});
+    
+    Route::get('/', function () {
+    return view('welcome');
+    });
 
-Route::post('/logout', [AuthController::class, 'logout']);
-Route::get('/dashboard', function () {
-    return view('admin.dashboard.dashboard');
-})->middleware('auth');
+    Route::get('/register', [RegisterController::class, 'show'])->name('register');
+    Route::post('/register', [RegisterController::class, 'register']);
+
+});
 
 #Guru
 
@@ -58,6 +55,11 @@ Route::get('siswa/nilai',
 #admin-------------------------------
 
 Route::middleware(['auth'])->group(function () {
+    
+Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/dashboard', function () {
+    return view('admin.dashboard.dashboard');
+});
 
 Route::get('admin/siswa', 
 [Siswacontroller::class, 'siswa']);
