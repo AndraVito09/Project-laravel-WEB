@@ -9,11 +9,10 @@ Ini adalah project sistem informasi yang saya kembangkan sebagai bagian dari tug
 * **Manajemen Data:** Input, edit, dan hapus data (CRUD) secara dinamis.
 * **Export PDF:** Fitur untuk mencetak laporan atau data ke dalam format PDF.
 * **Middleware:** Keamanan akses halaman berdasarkan hak akses pengguna.
-* **Responsive UI:** Tampilan yang nyaman diakses melalui perangkat apa pun.
 
 ## 🛠️ Teknologi yang Digunakan
 * **Backend:** PHP (Laravel Framework)
-* **Frontend:** Blade Templating, CSS (Tailwind/Bootstrap)
+* **Frontend:** Blade Templating, CSS (Bootstrap)
 * **Database:** MySQL
 * **Tools:** Composer, NPM, Git
 
