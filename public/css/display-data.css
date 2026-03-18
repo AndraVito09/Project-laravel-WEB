@@ -341,3 +341,29 @@ a[href*="export"]:hover {
     color: #718096;
     font-size: 18px;
 }
+
+.export {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.export:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.export:active {
+    transform: scale(0.97);
+}
+
+.export:focus {
+    outline: none;
+}
