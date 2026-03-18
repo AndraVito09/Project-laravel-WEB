@@ -3,7 +3,7 @@
 <head>
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('css/login.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('css/login.css')}}">
 </head>
 <body>
 
@@ -29,7 +29,7 @@
             </div>
         @endif
 
-        <form method="POST" action="/login">
+        <form method="POST" action="{{ route('login') }}">
             @csrf
 
             <div class="input-group">

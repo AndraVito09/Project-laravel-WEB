@@ -27,6 +27,7 @@
             <th>Nama</th>
             <th>Jenis Kelamin</th>
             <th>Tanggal Lahir</th>
+            <th>Foto</th>
             <th>Id Siswa</th>
             <th>Id Kelas</th>
             <th>Alamat</th>
@@ -41,6 +42,7 @@
         <td>{{ $s->nama }}</td>
         <td>{{ $s->jk }}</td>
         <td>{{ $s->tanggal_lahir }}</td>
+        <td><img src = "{{ $s->foto }}" width='100'></td>
         <td>{{ $s->id_siswa }}</td>
         <td>{{ $s->id_kelas }}</td>
         <td>{{ $s->alamat }}</td>

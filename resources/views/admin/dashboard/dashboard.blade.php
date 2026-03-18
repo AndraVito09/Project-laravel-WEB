@@ -51,7 +51,7 @@ button:active {
 <div class="form-container">
     <h2>Selamat Datang <br> {{ Auth::user()->username }}</h2>
     
-    <form method="POST" action="/logout">
+    <form method="POST" action="{{ url('logout')}}">
         @csrf
         <button type="submit">Logout</button>
     </form>

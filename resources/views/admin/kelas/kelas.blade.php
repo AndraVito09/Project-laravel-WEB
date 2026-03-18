@@ -1,11 +1,15 @@
 @extends('admin.Layout.AdminNavbar')
 @section('content')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.8.2/docx.umd.min.js"></script>
 <div class="container">
     <h1>Data Kelas</h1>
     
     <div class="header-actions">
         <a href="{{ url('admin/tambahkelas') }}" class="btn-primary">+ Tambah Kelas</a>{{ csrf_field() }}
-        <a href="{{ route('kelas.export.pdf') }}" target="_blank">Export PDF</a>
+        <button onclick="exportPDF()" class="export">Export PDF</button>
     </div>
     
     <div class="search-section">
@@ -60,4 +64,37 @@
         @endforelse
     </div>
 </div>
+<table id="exportTable" style="display: none">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>ID Kelas</th>
+            <th>Nama Kelas</th>
+            <th>Jurusan</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($arraykelas as $key => $kelas)
+        <tr>
+            <td>{{ $key + 1 }}</td>
+            <td>{{ $kelas->id_kelas }}</td>
+            <td>{{ $kelas->nama_kelas }}</td>
+            <td>{{ $kelas->jurusan }}</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
+<script>
+    
+    function getVisibleRows() { return [...document.querySelectorAll('#exportTable tbody tr')].filter(r => r.style.display !== 'none'); }
+    function getTableHead()   { return [...document.querySelectorAll('#exportTable thead th')].map(th => th.textContent); }
+    function getTableData()   { return getVisibleRows().map(tr => [...tr.querySelectorAll('td')].map(td => td.textContent.trim())); }
+    function exportPDF() {
+    const { jsPDF } = window.jspdf; const doc = new jsPDF();
+    doc.setFontSize(14); doc.text('Data Kelas', 14, 15);
+    doc.autoTable({ startY:22, head:[getTableHead()], body:getTableData(), styles:{fontSize:10,cellPadding:4}, headStyles:{fillColor:[102,126,234]} });
+    doc.save('data_kelas.pdf');
+}
+</script>
 @endsection

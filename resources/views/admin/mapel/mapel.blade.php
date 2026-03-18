@@ -9,7 +9,7 @@
     
     <div class="header-actions">
         <a href="{{ url('admin/tambahmapel') }}" class="btn-primary">+ Tambah Mapel</a>{{ csrf_field() }}
-        <button onclick="exportPDF()">PDF</button>
+        <button onclick="exportPDF()" class="export">Export PDF</button>
     </div>
     
     <div class="search-section">
@@ -64,7 +64,6 @@
         @endforelse
     </div>
 </div>
-
 <table id="exportTable" style="display: none">
     <thead><tr><th>No</th><th>Nama Mapel</th><th>Kategori</th></tr></thead>
     <tbody>
