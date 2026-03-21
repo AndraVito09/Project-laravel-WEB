@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -19,9 +21,18 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('dashboard');
+        $user = User::where('username', $credentials['username'])->first();
+
+        if ($user && Hash::check($credentials['password'], $user->password)) {
+            Auth::login($user);
+            
+           if ($user->role === 'admin'){
+               return redirect('dashboard');
+           } elseif ($user->role === 'guru'){
+                return redirect('guru/siswa');
+           } elseif ($user->role === 'siswa'){
+                return redirect('siswa/siswa');
+           }
         }
 
         return back()->withErrors([
